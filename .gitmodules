@@ -1,0 +1,3 @@
+[submodule "airbridge"]
+	path = airbridge
+	url = git@github.com:pokeum/bean-airbridge-for-fragile.git

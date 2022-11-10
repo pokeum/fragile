@@ -124,4 +124,13 @@ public class MJsonUnitTest {
         else if (jsonObject.isPrimitive())
             System.out.println("Primitive");
     }
+
+    @Test
+    public void convertJsonObjectToJavaObject() {
+        Json json = Json.read(getJsonString());
+        Map<String, Object> props = json.asMap();
+        for (Map.Entry<String, Object> propEntry: props.entrySet()) {
+            System.out.println(propEntry.getKey() + ": " + propEntry.getValue());
+        }
+    }
 }
