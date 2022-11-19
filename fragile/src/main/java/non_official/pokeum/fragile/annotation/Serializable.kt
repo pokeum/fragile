@@ -1,5 +1,5 @@
 package non_official.pokeum.fragile.annotation
 
-@Target(AnnotationTarget.FIELD)
+@Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
-annotation class SerialName(val value: String)
+annotation class Serializable
