@@ -1,10 +1,11 @@
-package com.example.json_parser
+package com.example.json_parser.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
+import com.example.json_parser.R
 import com.example.json_parser.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 

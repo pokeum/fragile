@@ -1,4 +1,4 @@
-package com.example.json_parser.mjson;
+package com.example.json_parser.json_libraries.mjson;
 
 import org.junit.Test;
 

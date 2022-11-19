@@ -1,4 +1,3 @@
 rootProject.name = "Json Parser"
 include ':app'
 include ':fragile'
-include ':airbridge'    // Submodule (Bean Airbridge)
