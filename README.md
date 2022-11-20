@@ -27,4 +27,5 @@ to convert Kotlin(or Java) Objects into JSON and back.
 ## <a id="benefits"> Benefits of using Fragile
 
 ## <a id="thanks"> Thanks
-* [![Site](https://img.shields.io/badge/jkid-github-lightgrey)](https://github.com/yole/jkid)
+* [jkid](https://github.com/yole/jkid)
+* [gson](https://github.com/google/gson)
