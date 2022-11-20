@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.Method;
 
 public class AccessAnnotationTest {
 
@@ -23,7 +24,12 @@ public class AccessAnnotationTest {
         printAnnotations(testPackage);
 
         // Read annotations on the method declarations
-
+        System.out.println("Method annotations:");
+        Method[] methods = cls.getDeclaredMethods();
+        for (Method method: methods) {
+            System.out.println("Annotations for method: " + method.getName());
+            printAnnotations(method);
+        }
     }
 
     private void printAnnotations(AnnotatedElement programElement) {

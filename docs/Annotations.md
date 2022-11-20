@@ -18,18 +18,26 @@
 
 - **Java**
   ```java
-  @Retention(RetentionPolicy.<retention-policy>)
-  @Target(ElementType.<element-type>)
-  [modifiers] @interface <annotation-type-name> {
-      <data-type> <element-name>() default <default-value>;
+  @Target({ElementType.TYPE, ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.PACKAGE})
+  @Retention(RetentionPolicy.RUNTIME)
+  public @interface Version {
+      int major() default 0;
+      int minor() default 0;
+      int patch() default 0;
   }
   ```
 - **Kotlin**
   ```kotlin
-  @Retention(AnnotationRetention.<annotation-retention>)
-  @Target(AnnotationTarget.<annotation-target>)
-  [modifiers] annotation class <annotation-type-name>(
-      val <element-name>: <data-type> = <default-value>,
+  @Retention(AnnotationRetention.RUNTIME)
+  @Target(AnnotationTarget.TYPE, AnnotationTarget.CONSTRUCTOR,
+      /* METHOD */
+      AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER,
+      /* PACKAGE */
+      AnnotationTarget.FILE)
+  annotation class Version(
+      val major: Int = 0,
+      val minor: Int = 0,
+      val patch: Int = 0
   )
   ```
   
@@ -37,7 +45,7 @@
 
 | Retention | Description |
 | --- | --- |
-| SOURCE | Source code only |
+| SOURCE | Source code(= `compile time`) only |
 | CLASS | Class file only (the default) |
 | RUNTIME | Class file and `runtime` |
 
