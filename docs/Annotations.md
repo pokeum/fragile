@@ -1,3 +1,5 @@
+<img src="./img/annotation-icon.png"  width="300">
+
 # Annotations & Annotation Processor
 
 ## Table of content
@@ -51,3 +53,13 @@
 
 
 ## <a id="annotation-processor"> Annotation Processor
+
+[:bookmark_tabs: Java Compilation Overview](https://openjdk.org/groups/compiler/doc/compilation-overview/index.html)
+
+**Annotation processing is performed in `rounds`.** 
+An instance of the RoundEnvironment interface represents a round.
+The javac compiler calls the `process()` method of your processor by *passing all annotations that processor declares to support and a RoundEnvironment object*.
+The return type of the process() method is boolean.
+If it *returns true*, the annotations passed to it are considered to be claimed by the processor. 
+The claimed annotations are not passed to other processors.
+If it *returns false*, the annotations passed to it are considered as not claimed, and other processors will be asked to process them.
