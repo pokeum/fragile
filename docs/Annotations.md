@@ -99,7 +99,7 @@ If it *returns false*, the annotations passed to it are considered as not claime
 
 #### <!-- [ Method 2 ] -->
 <details>
-<summary><b>[ Method 2 ]</b></summary>
+<summary><b>[ Method 2 ]</b> <i>@AutoService</i></summary>
 
 - annotation_processor/build.gradle
      
@@ -130,7 +130,7 @@ If it *returns false*, the annotations passed to it are considered as not claime
   }
   ```
 
-- **app/build.gradle**
+- **app/build.gradle** ([`kapt`](https://kotlinlang.org/docs/kapt.html))
   ```groovy
   plugins {
       id 'com.android.application'
