@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.json_parser.R
 import com.example.json_parser.databinding.ActivityMainBinding
+import com.example.json_parser.util.startActivity
 import com.google.android.material.navigation.NavigationView
 
 /* Annotation Processor Test */
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.nav_gson_test -> { startActivity(GsonTestActivity::class.java) }
         }
         return true
     }

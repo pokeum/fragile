@@ -20,8 +20,11 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
         }
     }
     buildFeatures {
@@ -39,11 +42,11 @@ android {
 dependencies {
 
     implementation project(":annotations")
-    kapt project(':annotation_processor')
+    kapt project(':annotation-processor')
 
-    /* Fragile */
+    /* Json Serialization & Deserialization Libraries */
     implementation project(":fragile")
-
+    //implementation project(":fragile-codegen")
     implementation "org.sharegov:mjson:1.4.1"           // mJson
     implementation "com.google.code.gson:gson:2.8.6"    // Gson
 

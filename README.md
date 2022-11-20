@@ -4,4 +4,4 @@
 
 # Fragile
 
-Fragile is `light-weight` Java & Kotlin serialization/deserialization library to convert Java & Kotlin Objects into JSON and back.
+Fragile is `light-weight` Kotlin serialization/deserialization library to convert Kotlin(or Java) Objects into JSON and back.
