@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -36,6 +37,10 @@ android {
 }
 
 dependencies {
+
+    implementation project(":annotations")
+    //annotationProcessor project(':annotation_processor')
+    kapt project(':annotation_processor')
 
     /* Fragile */
     implementation project(":fragile")

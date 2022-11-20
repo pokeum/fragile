@@ -1,4 +1,4 @@
-<img src="./img/annotation-icon.png"  width="300">
+<img src="./img/annotation-icon.png"  width="200">
 
 # Annotations & Annotation Processor
 
@@ -8,6 +8,7 @@
   - [What Are Annotations?](#what-are-annotations)
   - [Declaring Annotation Type](#declaring-annotation-type)
 - [Annotation Processor](#annotation-processor)
+  - [Processing Rounds](#processing-rounds)
 
 ## <a id="annotations"> Annotations
 
@@ -55,6 +56,10 @@
 ## <a id="annotation-processor"> Annotation Processor
 
 [:bookmark_tabs: Java Compilation Overview](https://openjdk.org/groups/compiler/doc/compilation-overview/index.html)
+
+### <a id="processing-rounds"> Processing Rounds
+
+<img src="./img/processing-rounds.png"  width="600">
 
 **Annotation processing is performed in `rounds`.** 
 An instance of the RoundEnvironment interface represents a round.

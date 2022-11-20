@@ -9,5 +9,5 @@ java {
 }
 
 dependencies {
-    implementation project(':annotations')
+    testImplementation "junit:junit:4.13.2"
 }
