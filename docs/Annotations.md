@@ -9,6 +9,7 @@
   - [Declaring Annotation Type](#declaring-annotation-type)
 - [Annotation Processor](#annotation-processor)
   - [Processing Rounds](#processing-rounds)
+  - [Register Annotation Processor](#register-annotation-processor)
 
 ## <a id="annotations"> Annotations
 
@@ -68,3 +69,9 @@ The return type of the process() method is boolean.
 If it *returns true*, the annotations passed to it are considered to be claimed by the processor. 
 The claimed annotations are not passed to other processors.
 If it *returns false*, the annotations passed to it are considered as not claimed, and other processors will be asked to process them.
+
+### <a id="register-annotation-processor"> Register Annotation Processor
+
+#### Example
+<img src="./ScreenShots/register_annotation_processor_1.png"  width="300">
+<img src="./drawio/annotation-dependencies.svg"  width="600">
