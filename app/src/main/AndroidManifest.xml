@@ -10,8 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JsonParser">
         <activity
+            android:name=".presentation.activity.FragileTestActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.activity.GsonTestActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".presentation.activity.MainActivity"
             android:exported="true">

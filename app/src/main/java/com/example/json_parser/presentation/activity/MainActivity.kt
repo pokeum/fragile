@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.nav_fragile_test -> { startActivity(FragileTestActivity::class.java) }
             R.id.nav_gson_test -> { startActivity(GsonTestActivity::class.java) }
         }
         return true
