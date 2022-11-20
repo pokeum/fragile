@@ -5,12 +5,13 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.annotations.annotation.java.Version
 import com.example.json_parser.R
 import com.example.json_parser.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 
-//@Version(major = -1)    // Annotation Processor Test
+/* Annotation Processor Test */
+//import com.example.annotations.annotation.java.Version
+//@Version(major = -1)
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding

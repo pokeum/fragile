@@ -1,12 +1,14 @@
 package com.example.annotation_processor.java;
 
 import com.example.annotations.annotation.java.Version;
+import com.google.auto.service.AutoService;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Messager;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
@@ -14,6 +16,7 @@ import javax.lang.model.element.Name;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic.Kind;
 
+@AutoService(Processor.class)
 public class VersionProcessor extends AbstractProcessor {
 
     // A no-args constructor is required for an annotation processor

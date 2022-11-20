@@ -72,6 +72,74 @@ If it *returns false*, the annotations passed to it are considered as not claime
 
 ### <a id="register-annotation-processor"> Register Annotation Processor
 
-#### Example
-<img src="./ScreenShots/register_annotation_processor_1.png"  width="300">
+#### :running_woman: Example
+<img src="./ScreenShots/register_annotation_processor_1.png"  width="400">
 <img src="./drawio/annotation-dependencies.svg"  width="600">
+
+#### <!-- [ Method 1 ] -->
+<details>
+<summary><b>[ Method 1 ]</b></summary>
+
+- `annotation_processor 모듈 레벨`에 아래와 같이 폴더를 생성
+  ```
+  annotation_processor/src/main/resources/META-INF/services
+  ```
+
+- 해당 위치에 아래와 같이 파일을 생성
+  ```
+  javax.annotation.processing.Processor
+  ```
+
+- 생성된 파일에 프로세서를 등록한다. (개 행으로 구분)
+  ```
+  com.example.annotation_processor.java.VersionProcessor
+  ```
+
+</details>
+
+#### <!-- [ Method 2 ] -->
+<details>
+<summary><b>[ Method 2 ]</b></summary>
+
+- annotation_processor/build.gradle
+     
+  ```groovy
+  dependencies {
+      implementation 'com.google.auto.service:auto-service:1.0'
+      annotationProcessor 'com.google.auto.service:auto-service:1.0'
+  }
+  ```
+
+- Annotation Processor Class
+     
+  ```java
+  import com.google.auto.service.AutoService;
+  import javax.annotation.processing.AbstractProcessor;
+  import javax.annotation.processing.Processor;
+
+  @AutoService(Processor.class)
+  public class VersionProcessor extends AbstractProcessor {
+  ```
+
+</details><br/>
+
+- **annotation_processor/build.gradle**
+  ```groovy
+  dependencies {
+      implementation project(':annotations')
+  }
+  ```
+
+- **app/build.gradle**
+  ```groovy
+  plugins {
+      id 'com.android.application'
+      id 'kotlin-android'
+      id 'kotlin-kapt'
+  }
+  
+  dependencies {
+      implementation project(":annotations")
+      kapt project(':annotation_processor')
+  }
+  ```
