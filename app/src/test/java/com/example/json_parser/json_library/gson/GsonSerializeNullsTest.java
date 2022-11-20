@@ -14,15 +14,15 @@ import java.util.Set;
 
 public class GsonSerializeNullsTest {
 
-    Gson gsonDisableSerializeNulls = new GsonBuilder().create();
-    Gson gsonEnableSerializeNulls = new GsonBuilder().serializeNulls().create();
+    Gson disableSerializeNulls = new GsonBuilder().create();
+    Gson enableSerializeNulls = new GsonBuilder().serializeNulls().create();
 
     @Test
     public void withArray() {
         String[] subject = new String[] { "hello", null, "world" };
 
-        assertEquals("[\"hello\",null,\"world\"]", gsonDisableSerializeNulls.toJson(subject));
-        assertEquals("[\"hello\",null,\"world\"]", gsonEnableSerializeNulls.toJson(subject));
+        assertEquals("[\"hello\",null,\"world\"]", disableSerializeNulls.toJson(subject));
+        assertEquals("[\"hello\",null,\"world\"]", enableSerializeNulls.toJson(subject));
     }
 
     @Test
@@ -40,8 +40,8 @@ public class GsonSerializeNullsTest {
          }};
         */
 
-        assertEquals("[null,1,2]", gsonDisableSerializeNulls.toJson(subject));
-        assertEquals("[null,1,2]", gsonEnableSerializeNulls.toJson(subject));
+        assertEquals("[null,1,2]", disableSerializeNulls.toJson(subject));
+        assertEquals("[null,1,2]", enableSerializeNulls.toJson(subject));
     }
 
     @Test
@@ -52,13 +52,9 @@ public class GsonSerializeNullsTest {
         subject.put("key3", "value3");
 
         assertEquals("{\"key1\":\"value1\",\"key3\":\"value3\"}",
-                gsonDisableSerializeNulls.toJson(subject));
+                disableSerializeNulls.toJson(subject));
 
         assertEquals("{\"key1\":\"value1\",\"key2\":null,\"key3\":\"value3\"}",
-                gsonEnableSerializeNulls.toJson(subject));
+                enableSerializeNulls.toJson(subject));
     }
-
-
-    //System.out.println("Disable Serialize Nulls: " + gsonDisableSerializeNulls.toJson(subject));
-    //System.out.println("Enable Serialize Nulls: " + gsonEnableSerializeNulls.toJson(subject));
 }

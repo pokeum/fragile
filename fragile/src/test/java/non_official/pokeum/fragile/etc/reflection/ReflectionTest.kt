@@ -1,4 +1,4 @@
-package non_official.pokeum.fragile.reflection
+package non_official.pokeum.fragile.etc.reflection
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

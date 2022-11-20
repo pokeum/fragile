@@ -1,4 +1,4 @@
-package non_official.pokeum.fragile.collections
+package non_official.pokeum.fragile.etc.collections
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
