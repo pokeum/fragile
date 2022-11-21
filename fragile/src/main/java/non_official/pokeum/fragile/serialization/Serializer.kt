@@ -25,7 +25,7 @@ internal class Serializer(
     private fun StringBuilder.serializeProperty(prop: KProperty1<Any, *>, obj: Any) {
         val key = prop.findAnnotation<SerializedName>()?.value ?: prop.name
         serializeString(key)
-        append(VALUE_SEPARATOR)
+        append(KEY_SEPARATOR)
 
         val value = try {
             prop.get(obj)
@@ -43,7 +43,7 @@ internal class Serializer(
     }
 
     fun <T> Iterable<T>.joinToStringBuilder(stringBuilder: StringBuilder,
-                                            separator: CharSequence = KEY_SEPARATOR,
+                                            separator: CharSequence = VALUE_SEPARATOR,
                                             prefix: CharSequence = "",
                                             postfix: CharSequence = "",
                                             limit: Int = -1,
@@ -82,7 +82,7 @@ internal class Serializer(
             prefix = CURLY_BRACKET_BEGIN, postfix = CURLY_BRACKET_END) { entry ->
             val (key, value) = entry
             serializeString(key.toString())
-            append(VALUE_SEPARATOR)
+            append(KEY_SEPARATOR)
             serializePropertyValue(value)
         }
     }
@@ -118,8 +118,8 @@ internal class Serializer(
         const val CURLY_BRACKET_BEGIN = "{"
         const val CURLY_BRACKET_END = "}"
 
-        const val KEY_SEPARATOR = ","
-        const val VALUE_SEPARATOR = ":"
+        const val VALUE_SEPARATOR = ","
+        const val KEY_SEPARATOR = ":"
         const val TRUNCATED = "..."
         const val NULL = "null"
 
