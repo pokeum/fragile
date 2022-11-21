@@ -17,8 +17,10 @@ public class BasicObjectTest {
     @Test
     public void withCar() {
         Car car = new Car("My Car's Name", 15, 1, 4,
-                "North", "Red", "Gas");
+                "North", "Red", "Gas", 2.1795e4);
 
+        System.out.println("[Gson] " + gson.toJson(car));
+        System.out.println("[Fragile] " + fragile.toJson(car));
         assertEquals(gson.toJson(car), fragile.toJson(car));
     }
 }
