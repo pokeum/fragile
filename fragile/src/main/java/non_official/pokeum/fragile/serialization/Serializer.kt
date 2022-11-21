@@ -13,7 +13,7 @@ internal class Serializer(
 ) {
     fun serialize(obj: Any?): String = when(obj) {
         null -> NULL
-        is Char, is CharSequence -> DOUBLE_QUOTE + obj.toString() + DOUBLE_QUOTE
+        is Char, is CharSequence -> buildString { serializeString(obj.toString()) }
         is Number, is Boolean -> obj.toString()
         is Array<*> -> buildString { serializeList(obj.toList()) }
         is Set<*> -> buildString { serializeList(obj.toList()) }
@@ -123,15 +123,17 @@ internal class Serializer(
         const val TRUNCATED = "..."
         const val NULL = "null"
 
-        val REPLACEMENT_CHARS = mapOf(
-            '"' to "\\\"",
-            '\\' to "\\\\",
-            '\t' to "\\t",
-            '\b' to "\\b",
-            '\n' to "\\n",
-            '\r' to "\\r",
-            '\u000C' to "\\f"
-        )
+        val REPLACEMENT_CHARS = (0..0x1f).toList().associate {
+            it.toChar() to String.format("\\u%04x", it)     // 4 hexadecimal digits ("\u0000" to "\u001f")
+        }.toMutableMap().apply {
+            put('"', "\\\"")        // quotation mark
+            put('\\', "\\\\")       // reverse solidus
+            put('\b', "\\b")        // backspace
+            put('\n', "\\n")        // newline
+            put('\r', "\\r")        // carriage return
+            put('\t', "\\t")        // horizontal tab
+            put('\u000c', "\\f")    // formfeed
+        }
         val HTML_SAFE_REPLACEMENT_CHARS = REPLACEMENT_CHARS.toMutableMap().apply {
             put('<', "\\u003c")
             put('>', "\\u003e")

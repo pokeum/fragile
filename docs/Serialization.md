@@ -8,6 +8,7 @@ The Kotlin Serialization code is created by referring to the `jkid` library.
 - [Structure](#structure)
     - [Json Object](#json-object-structure)
     - [Json Array](#json-array-structure)
+    - [Json Data Types](#json-data-types-structure)
 
 ## <a id="structure"> Structure
 
@@ -18,3 +19,14 @@ The Kotlin Serialization code is created by referring to the `jkid` library.
 * ## <a id="json-array-structure"> Json Array
 
     <img src="drawio/json-array-structure/json-array-structure.svg"  width="1200">
+
+* ## <a id="json-data-types-structure"> Json Data Types
+
+  | Data Type | Json String |
+  | --- | --- |
+  | String | `"`FRAGILE`"` |
+  | Number | 1234 |
+  | Object | [`Json Object`](#json-object-structure) |
+  | Array | [`Json Array`](#json-array-structure) |
+  | Boolean | true/false |
+  | Null | null |

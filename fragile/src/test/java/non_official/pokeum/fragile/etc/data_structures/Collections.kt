@@ -1,9 +1,9 @@
-package non_official.pokeum.fragile.etc.collections
+package non_official.pokeum.fragile.etc.data_structures
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class JoinToTest {
+class Collections {
 
     @Test
     fun joinToTest() {

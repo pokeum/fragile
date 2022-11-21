@@ -1,4 +1,4 @@
-package non_official.pokeum.fragile.java;
+package non_official.pokeum.fragile.serialization.java;
 
 import static org.junit.Assert.assertEquals;
 
@@ -23,9 +23,9 @@ public class FragilePrimitiveTypeTest {
 
     @Test
     public void withString() {
-        String subject = "GSON";
+        String subject = "FRAGILE";
 
-        assertEquals("\"GSON\"", fragile.toJson(subject));
+        assertEquals("\"FRAGILE\"", fragile.toJson(subject));
     }
 
     @Test
