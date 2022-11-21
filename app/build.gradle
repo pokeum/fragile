@@ -46,7 +46,6 @@ dependencies {
 
     /* Json Serialization & Deserialization Libraries */
     implementation project(":fragile")
-    //implementation project(":fragile-codegen")
     implementation "org.sharegov:mjson:1.4.1"           // mJson
     implementation "com.google.code.gson:gson:2.8.6"    // Gson
 

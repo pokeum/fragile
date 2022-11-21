@@ -2,11 +2,14 @@ package non_official.pokeum.fragile.serialization
 
 import non_official.pokeum.fragile.annotation.SerializedName
 import kotlin.reflect.KProperty1
+import kotlin.reflect.full.IllegalCallableAccessException
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.memberProperties
+import kotlin.reflect.jvm.isAccessible
 
 internal class Serializer(
-    private val serializeNulls: Boolean
+    private val serializeNulls: Boolean,
+    private val escapeHtml: Boolean,
 ) {
     fun serialize(obj: Any?): String = when(obj) {
         null -> NULL
@@ -24,7 +27,18 @@ internal class Serializer(
         serializeString(key)
         append(VALUE_SEPARATOR)
 
-        val value = prop.get(obj)
+        val value = try {
+            prop.get(obj)
+        } catch (e: IllegalCallableAccessException) {
+            prop.let {
+                // access to private field and get value
+                it.isAccessible = true
+                val value = it.get(obj)
+
+                it.isAccessible = false     // reset accessibility
+                value
+            }
+        }
         serializePropertyValue(value)
     }
 
@@ -87,17 +101,13 @@ internal class Serializer(
         append(DOUBLE_QUOTE)
     }
 
-    private fun Char.escape(): Any =
-        when (this) {
-            '\\' -> "\\\\"
-            '\"' -> "\\\""
-            '\b' -> "\\b"
-            '\u000C' -> "\\f"
-            '\n' -> "\\n"
-            '\r' -> "\\r"
-            '\t' -> "\\t"
-            else -> this
+    private fun Char.escape(): Any {
+        val replacements = if (escapeHtml) HTML_SAFE_REPLACEMENT_CHARS else REPLACEMENT_CHARS
+        if (replacements.containsKey(this)) {
+            return replacements[this]!!
         }
+        return this
+    }
 
     companion object {
         const val DOUBLE_QUOTE = "\""
@@ -108,9 +118,26 @@ internal class Serializer(
         const val CURLY_BRACKET_BEGIN = "{"
         const val CURLY_BRACKET_END = "}"
 
-        const val KEY_SEPARATOR = ", "
-        const val VALUE_SEPARATOR = ": "
+        const val KEY_SEPARATOR = ","
+        const val VALUE_SEPARATOR = ":"
         const val TRUNCATED = "..."
         const val NULL = "null"
+
+        val REPLACEMENT_CHARS = mapOf(
+            '"' to "\\\"",
+            '\\' to "\\\\",
+            '\t' to "\\t",
+            '\b' to "\\b",
+            '\n' to "\\n",
+            '\r' to "\\r",
+            '\u000C' to "\\f"
+        )
+        val HTML_SAFE_REPLACEMENT_CHARS = REPLACEMENT_CHARS.toMutableMap().apply {
+            put('<', "\\u003c")
+            put('>', "\\u003e")
+            put('&', "\\u0026")
+            put('=', "\\u003d")
+            put('\'', "\\u0027")
+        }
     }
 }

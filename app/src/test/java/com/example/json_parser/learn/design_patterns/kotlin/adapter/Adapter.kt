@@ -1,6 +1,6 @@
-package com.example.json_parser.learn_design_patterns.kotlin.adapter
+package com.example.json_parser.learn.design_patterns.kotlin.adapter
 
-import com.example.json_parser.learn_design_patterns.kotlin.adapter.model.*
+import com.example.json_parser.learn.design_patterns.kotlin.adapter.model.*
 import org.junit.Test
 
 /**

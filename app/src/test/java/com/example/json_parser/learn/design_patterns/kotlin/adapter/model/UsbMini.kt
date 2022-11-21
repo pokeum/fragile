@@ -1,4 +1,4 @@
-package com.example.json_parser.learn_design_patterns.kotlin.adapter.model
+package com.example.json_parser.learn.design_patterns.kotlin.adapter.model
 
 interface UsbMini {
     val hasPower: Power
