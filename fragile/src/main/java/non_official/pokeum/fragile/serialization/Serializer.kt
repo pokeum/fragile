@@ -1,6 +1,7 @@
 package non_official.pokeum.fragile.serialization
 
 import non_official.pokeum.fragile.annotation.SerializedName
+import java.util.regex.Pattern
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.IllegalCallableAccessException
 import kotlin.reflect.full.findAnnotation
@@ -24,9 +25,6 @@ internal class Serializer(
 
     private fun StringBuilder.serializeProperty(prop: KProperty1<Any, *>, obj: Any) {
         val key = prop.findAnnotation<SerializedName>()?.value ?: prop.name
-        serializeString(key)
-        append(KEY_SEPARATOR)
-
         val value = try {
             prop.get(obj)
         } catch (e: IllegalCallableAccessException) {
@@ -39,7 +37,12 @@ internal class Serializer(
                 value
             }
         }
-        serializePropertyValue(value)
+
+        if (serializeNulls || value != null) {
+            serializeString(key)
+            append(KEY_SEPARATOR)
+            serializePropertyValue(value)
+        }
     }
 
     fun <T> Iterable<T>.joinToStringBuilder(stringBuilder: StringBuilder,
@@ -81,10 +84,13 @@ internal class Serializer(
         data.toList().joinToStringBuilder(this,
             prefix = CURLY_BRACKET_BEGIN, postfix = CURLY_BRACKET_END) { entry ->
             val (key, value) = entry
-            serializeString(key.toString())
-            append(KEY_SEPARATOR)
-            serializePropertyValue(value)
+            if (serializeNulls || value != null) {
+                serializeString(key.toString())
+                append(KEY_SEPARATOR)
+                serializePropertyValue(value)
+            }
         }
+        if (!serializeNulls) { jsonObjectSyntaxCheck() }
     }
 
     private fun StringBuilder.serializeObject(obj: Any) {
@@ -93,12 +99,26 @@ internal class Serializer(
                 prefix = CURLY_BRACKET_BEGIN, postfix = CURLY_BRACKET_END) {
                 serializeProperty(it, obj)
             }
+        if (!serializeNulls) { jsonObjectSyntaxCheck() }
     }
 
     private fun StringBuilder.serializeString(s: String) {
         append(DOUBLE_QUOTE)
         s.forEach { append(it.escape()) }
         append(DOUBLE_QUOTE)
+    }
+
+    /**
+     * must run Json Object syntax check when Serialize Nulls is disabled.
+     */
+    private fun StringBuilder.jsonObjectSyntaxCheck() {
+        val pBegin = Pattern.compile("(\\$CURLY_BRACKET_BEGIN)(\\$VALUE_SEPARATOR)+")
+        val pSeparator = Pattern.compile("(\\$VALUE_SEPARATOR)+")
+        val pEnd = Pattern.compile("(\\$VALUE_SEPARATOR)+(\\$CURLY_BRACKET_END)")
+
+        replace(0, length, pBegin.matcher(this).replaceAll(CURLY_BRACKET_BEGIN))
+        replace(0, length, pSeparator.matcher(this).replaceAll(VALUE_SEPARATOR))
+        replace(0, length, pEnd.matcher(this).replaceAll(CURLY_BRACKET_END))
     }
 
     private fun Char.escape(): Any {
