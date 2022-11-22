@@ -10,7 +10,7 @@ import non_official.pokeum.fragile.Fragile;
  * Primitive Type: byte, short, int, long, float, double, char, boolean.
  * (+ also test "String" object here)
  */
-public class FragilePrimitiveTypeTest {
+public class PrimitiveTypeTest {
 
     Fragile fragile = new Fragile();
 

@@ -1,4 +1,4 @@
-package com.example.json_parser.json_library.gson;
+package com.example.json_parser.json_library.gson.serialization.java;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,7 +10,7 @@ import org.junit.Test;
  * Primitive Type: byte, short, int, long, float, double, char, boolean.
  * (+ also test "String" object here)
  */
-public class GsonPrimitiveTypeTest {
+public class PrimitiveTypeTest {
 
     Gson gson = new Gson();
 
