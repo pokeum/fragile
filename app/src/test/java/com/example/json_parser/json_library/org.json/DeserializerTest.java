@@ -31,6 +31,9 @@ public class DeserializerTest {
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
             assertEquals("My Car's Name", jsonObject.getString("name"));
+
+            //jsonObject.put("name", "My Car's New Name");
+            //System.out.println(jsonObject);
         } catch (JSONException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }

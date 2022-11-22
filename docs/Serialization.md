@@ -34,4 +34,6 @@ The Kotlin Serialization code is created by referring to the `jkid` library.
 
 ## <a id="serialize-process"> Serialize Process
 
-<img src="drawio/fragile-serialize.svg"  width="800">
+(📂 `fragile/src/main/java/non_official/pokeum/fragile/serialization/Serializer.kt`)
+
+<img src="drawio/fragile-serialize.svg"  width="550">
