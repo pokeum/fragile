@@ -11,7 +11,7 @@ class StringBuilderTest {
     fun `Use regex to replace patterns in StringBuilder`() {
 
         val stringBuilder = StringBuilder()
-        stringBuilder.append("{,,1234,,,1234,,,}")
+        stringBuilder.append("{,,\"key1\":\"value1\",,,\"key2\":\"value2\",,,}")
 
         val pattern1 = Pattern.compile("(\\$CURLY_BRACKET_BEGIN)(\\$VALUE_SEPARATOR)+")
         val pattern2 = Pattern.compile("(\\$VALUE_SEPARATOR)+")
@@ -25,7 +25,7 @@ class StringBuilderTest {
         stringBuilder.replace(0, stringBuilder.length, matcher2.replaceAll(VALUE_SEPARATOR))
         stringBuilder.replace(0, stringBuilder.length, matcher3.replaceAll(CURLY_BRACKET_END))
 
-        assertEquals("{1234,1234}", stringBuilder.toString())
+        assertEquals("{\"key1\":\"value1\",\"key2\":\"value2\"}", stringBuilder.toString())
     }
 
     companion object {

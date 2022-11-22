@@ -1,4 +1,4 @@
 package non_official.pokeum.fragile.element
 
-class FragilePrimitive: FragileElement {
+class JsonNull: JsonElement {
 }

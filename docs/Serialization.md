@@ -9,6 +9,7 @@ The Kotlin Serialization code is created by referring to the `jkid` library.
     - [Json Object](#json-object-structure)
     - [Json Array](#json-array-structure)
     - [Json Data Types](#json-data-types-structure)
+- [Serialize Process](#serialize-process)
 
 ## <a id="structure"> Structure
 
@@ -30,3 +31,7 @@ The Kotlin Serialization code is created by referring to the `jkid` library.
   | Array | [`Json Array`](#json-array-structure) |
   | Boolean | true/false |
   | Null | null |
+
+## <a id="serialize-process"> Serialize Process
+
+<img src="drawio/fragile-serialize.svg"  width="800">
