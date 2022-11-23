@@ -1,7 +1,7 @@
 # Serialization
 
 [![Site](https://img.shields.io/badge/jkid-github-lightgrey)](https://github.com/yole/jkid)     
-The Kotlin Serialization code is created by referring to the `jkid` library.
+The Kotlin(or Java) Serialization code is created by referring to the `jkid` library.
 
 ## Table of content
 
@@ -9,6 +9,7 @@ The Kotlin Serialization code is created by referring to the `jkid` library.
     - [Json Object](#json-object-structure)
     - [Json Array](#json-array-structure)
     - [Json Data Types](#json-data-types-structure)
+- [Serialize Process](#serialize-process)
 
 ## <a id="structure"> Structure
 
@@ -30,3 +31,9 @@ The Kotlin Serialization code is created by referring to the `jkid` library.
   | Array | [`Json Array`](#json-array-structure) |
   | Boolean | true/false |
   | Null | null |
+
+## <a id="serialize-process"> Serialize Process
+
+(📂 `fragile/src/main/java/non_official/pokeum/fragile/serialization/Serializer.kt`)
+
+<img src="drawio/fragile-serialize.svg"  width="550">

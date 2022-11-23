@@ -110,6 +110,9 @@ internal class Serializer(
 
     /**
      * must run Json Object syntax check when Serialize Nulls is disabled.
+     *
+     * from: {,,"key1":"value1",,,"key2":"value2",,,}
+     * to: {"key1":"value1","key2":"value2"}
      */
     private fun StringBuilder.jsonObjectSyntaxCheck() {
         val pBegin = Pattern.compile("(\\$CURLY_BRACKET_BEGIN)(\\$VALUE_SEPARATOR)+")
