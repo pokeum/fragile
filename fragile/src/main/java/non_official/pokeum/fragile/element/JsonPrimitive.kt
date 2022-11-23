@@ -11,17 +11,17 @@ class JsonPrimitive: JsonElement {
     fun isNumber(): Boolean = this.value is Number
     fun isString(): Boolean = this.value is String
 
-    override fun getAsBoolean(): Boolean {
+    override fun asBoolean(): Boolean {
         if (isBoolean()) { return this.value as Boolean }
         throw IllegalStateException("Not a Boolean: $this")
     }
 
-    override fun getAsNumber(): Number {
+    override fun asNumber(): Number {
         if (isNumber()) { return this.value as Number }
         throw IllegalStateException("Not a Number: $this")
     }
 
-    override fun getAsString(): String {
+    override fun asString(): String {
         if (isString()) { return this.value as String }
         throw IllegalStateException("Not a String: $this")
     }

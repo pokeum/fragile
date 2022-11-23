@@ -19,8 +19,9 @@ class DeserializerTest {
               "price": 21795.0
             }
         """.trimIndent()
-        val jsonObject = Fragile().fromJson(json).getAsJsonObject()
+        val jsonObject = Fragile().fromJson(json).asJsonObject()
 
-        println(jsonObject.get("name").getAsJsonPrimitive().getAsString())
+        println(jsonObject.get("name").asString())
+        println(jsonObject.get("drivetrain").asNumber().toInt())
     }
 }
