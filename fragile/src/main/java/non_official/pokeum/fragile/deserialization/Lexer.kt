@@ -4,7 +4,7 @@ import java.io.Reader
 
 class MalformedJSONException(message: String): Exception(message)
 
-internal class CharReader(val reader: Reader) {
+internal class CharReader(private val reader: Reader) {
     private val tokenBuffer = CharArray(4)
     private var nextChar: Char? = null
     var eof = false
@@ -13,12 +13,8 @@ internal class CharReader(val reader: Reader) {
     private fun advance() {
         if (eof) return
         val c = reader.read()
-        if (c == -1) {
-            eof = true
-        }
-        else {
-            nextChar = c.toChar()
-        }
+        if (c == -1) { eof = true }
+        else { nextChar = c.toChar() }
     }
 
     fun peekNext(): Char? {

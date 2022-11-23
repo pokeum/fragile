@@ -23,10 +23,13 @@ class Fragile() {
      */
     fun toJson(obj: Any?): String = Serializer(serializeNulls, escapeHtml).serialize(obj)
 
+    /**
+     * Deserialization
+     */
     fun fromJson(json: String): JsonElement {
-        val seed = JsonObject()
-        Parser(StringReader(json), seed).parse()
-        return seed
+        val jsonObject = JsonObject()
+        Parser(StringReader(json), jsonObject).parse()
+        return jsonObject
     }
 
     companion object {
