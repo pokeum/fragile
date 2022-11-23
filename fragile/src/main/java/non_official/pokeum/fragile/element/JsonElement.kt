@@ -30,5 +30,8 @@ interface JsonElement {
     fun getAsBoolean(): Boolean { throw UnsupportedOperationException(this.javaClass.kotlin.simpleName) }
     fun getAsNumber(): Number { throw UnsupportedOperationException(this.javaClass.kotlin.simpleName) }
     fun getAsString(): String { throw UnsupportedOperationException(this.javaClass.kotlin.simpleName) }
-    fun getAsCharacter(): Char { throw UnsupportedOperationException(this.javaClass.kotlin.simpleName) }
+
+    fun setProperty(propertyName: String, value: Any?) { throw UnsupportedOperationException(this.javaClass.kotlin.simpleName) }
+    fun createObject(propertyName: String): JsonElement { throw UnsupportedOperationException(this.javaClass.kotlin.simpleName) }
+    fun createArray(propertyName: String): JsonElement { throw UnsupportedOperationException(this.javaClass.kotlin.simpleName) }
 }
