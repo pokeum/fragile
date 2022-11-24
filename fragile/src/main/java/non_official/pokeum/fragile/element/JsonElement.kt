@@ -1,6 +1,7 @@
 package non_official.pokeum.fragile.element
 
 interface JsonElement {
+    val value : Any?
 
     fun isJsonObject(): Boolean = this is JsonObject
     fun isJsonArray(): Boolean = this is JsonArray

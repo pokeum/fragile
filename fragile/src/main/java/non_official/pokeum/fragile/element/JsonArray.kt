@@ -3,6 +3,9 @@ package non_official.pokeum.fragile.element
 import non_official.pokeum.fragile.throwable.FragileException
 
 class JsonArray: JsonElement {
+    override val value: JsonArray
+        get() = this
+
     private val members = mutableListOf<JsonElement>()
 
     override fun setProperty(propertyName: String, value: Any?) {
