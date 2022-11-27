@@ -19,13 +19,15 @@ class JsonArray: JsonElement {
         }
     }
 
-    override fun createObject(propertyName: String): JsonElement {
-        members.add(JsonObject())
-        return members.last()
+    override fun createObject(propertyName: String): JsonObject {
+        val jsonObject = JsonObject()
+        members.add(jsonObject)
+        return jsonObject
     }
 
-    override fun createArray(propertyName: String): JsonElement {
-        members.add(JsonArray())
-        return members.last()
+    override fun createArray(propertyName: String): JsonArray {
+        val jsonArray = JsonArray()
+        members.add(jsonArray)
+        return jsonArray
     }
 }

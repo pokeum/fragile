@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 
+import com.example.json_parser.util.TestUtils;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -22,7 +24,8 @@ public class JSONObjectTest {
     }
 
     private JSONObject createJSONObjectFromJSONString() throws JSONException {
-        JSONObject jo = new JSONObject("{\"city\":\"chicago\",\"name\":\"jon doe\",\"age\":\"22\"}");
+        String jsonString = TestUtils.getStringFromFile("cake.json");
+        JSONObject jo = new JSONObject(jsonString);
         return jo;
     }
 
@@ -31,6 +34,21 @@ public class JSONObjectTest {
         try {
             JSONObject jo = createJSONObject();
             assertEquals("chicago", jo.get("city"));
+        } catch (JSONException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Test
+    public void getJSONObject() {
+        try {
+            JSONObject jo = createJSONObjectFromJSONString();
+            Exception exception = assertThrows(JSONException.class, () -> {
+                jo.getJSONObject("id");
+            });
+            String expectedMessage = "JSONObject[\"id\"] is not a JSONObject.";
+            String actualMessage = exception.getMessage();
+            assertEquals(expectedMessage, actualMessage);
         } catch (JSONException e) {
             System.out.println(e.getMessage());
         }
