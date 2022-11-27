@@ -21,7 +21,7 @@ class DeserializerTest {
         """.trimIndent()
         val jsonObject = Fragile().fromJson(json).asJsonObject()
 
-        println(jsonObject.get("name").asString())
-        println(jsonObject.get("drivetrain").asNumber().toInt())
+        println(jsonObject.get("name"))
+        println(jsonObject.get("drivetrain"))
     }
 }

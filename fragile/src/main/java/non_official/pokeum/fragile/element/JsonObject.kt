@@ -3,6 +3,9 @@ package non_official.pokeum.fragile.element
 import non_official.pokeum.fragile.throwable.FragileException
 
 class JsonObject: JsonElement {
+    override val value: JsonObject
+        get() = this
+
     private val members = mutableMapOf<String, JsonElement>()
 
     override fun setProperty(propertyName: String, value: Any?) {
@@ -26,5 +29,18 @@ class JsonObject: JsonElement {
         return members[propertyName]!!
     }
 
-    fun get(key: String): JsonElement { return members[key]!! } // TEST
+    /**
+     * Returns the value mapped by name, or throws if no such mapping exists.
+     * @throws FragileException if no such mapping exists.
+     * @throws NullPointerException if parameter is null. (java only)
+     */
+    fun get(key: String): Any? {
+        val jsonElement = members[key] ?: throw FragileException("JsonObject[$key] not found.")
+        return jsonElement.value
+    }
+
+    /**
+     * Returns the value mapped by name, or null if no such mapping exists.
+     */
+    fun opt(key: String): Any? { return members[key]?.value }
 }
