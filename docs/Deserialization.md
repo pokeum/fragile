@@ -21,3 +21,5 @@ The Kotlin(or Java) Deserialization code is created by referring to the `jkid` l
     <img src="drawio/char-reader-structure/char-reader-structure.svg"  width="700">
 
 ## <a id="deserialize-process"> Deserialize Process
+
+<img src="drawio/deserialize-process/deserialize-process.svg"  width="1200">
