@@ -1,17 +1,33 @@
 package non_official.pokeum.fragile.deserialization
 
-import non_official.pokeum.fragile.element.JsonElement
+import non_official.pokeum.fragile.element.*
 import java.io.Reader
 
-class Parser(reader: Reader, private val rootElement: JsonElement) {
+class Parser(reader: Reader) {
     private val lexer = Lexer(reader)
+    private lateinit var rootElement: JsonElement
 
-    fun parse() {
-        expect(Token.LEFT_BRACE)
-        parseObjectBody(rootElement)
+    fun parse(): JsonElement {
+        when (val token = nextToken()) {
+            is Token.NullValue -> rootElement = JsonNull()
+            is Token.BoolValue -> rootElement = JsonPrimitive(token.value)
+            is Token.StringValue -> rootElement = JsonPrimitive(token.value)
+            is Token.NumberValue -> rootElement = JsonPrimitive(token.value)
+
+            Token.LEFT_BRACE -> {
+                rootElement = JsonObject()
+                parseObjectBody(rootElement)
+            }
+
+            Token.LEFT_BRACKET -> {
+                rootElement = JsonArray()
+                parseArrayBody(rootElement, "")
+            }
+        }
         if (lexer.nextToken() != null) {
             throw IllegalArgumentException("Too many tokens")
         }
+        return rootElement
     }
 
     private fun parseObjectBody(jsonObject: JsonElement) {

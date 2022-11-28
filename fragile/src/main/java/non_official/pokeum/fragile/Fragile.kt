@@ -1,7 +1,7 @@
 package non_official.pokeum.fragile
 
 import non_official.pokeum.fragile.deserialization.Parser
-import non_official.pokeum.fragile.element.JsonObject
+import non_official.pokeum.fragile.element.JsonElement
 import non_official.pokeum.fragile.serialization.Serializer
 import java.io.StringReader
 
@@ -25,11 +25,7 @@ class Fragile() {
     /**
      * Deserialization
      */
-    fun fromJson(json: String): JsonObject {
-        val jsonObject = JsonObject()
-        Parser(StringReader(json), jsonObject).parse()
-        return jsonObject
-    }
+    fun fromJson(json: String): JsonElement = Parser(StringReader(json)).parse()
 
     companion object {
         const val DEFAULT_SERIALIZE_NULLS = true

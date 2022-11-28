@@ -12,14 +12,14 @@ class DeserializerTest {
     @Ignore
     fun testCar() {
         val jsonString = TestUtils.getStringFromFile("car.json")
-        val jsonObject = Fragile().fromJson(jsonString)
+        val jsonObject = Fragile().fromJson(jsonString).asJsonObject()
 
-        assertEquals("My Car's Name", jsonObject.get("name"))
+        assertEquals("My Car's Name", jsonObject?.get("name"))
 
-        assertEquals(15L, jsonObject.get("speed"))      // Long
-        assertEquals(15, jsonObject.get("speed"))       // Integer (Wrong)
+        assertEquals(15L, jsonObject?.get("speed"))      // Long
+        assertEquals(15, jsonObject?.get("speed"))       // Integer (Wrong)
 
-        assertEquals(21795.0, jsonObject.get("price"))  // Double
+        assertEquals(21795.0, jsonObject?.get("price"))  // Double
     }
 
     @Test
