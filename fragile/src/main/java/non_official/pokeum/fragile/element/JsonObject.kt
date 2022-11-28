@@ -58,6 +58,15 @@ class JsonObject: JsonElement {
         }
     }
 
+    fun getBoolean(key: String): Boolean? {
+        val jsonElement = getJsonElement(key)
+        return if (jsonElement is JsonPrimitive && jsonElement.isBoolean()) {
+            jsonElement.value as Boolean
+        } else if (jsonElement is JsonNull) {
+            null
+        } else { throw FragileException("JsonObject[$key] is not a Boolean.") }
+    }
+
     /**
      * Returns the value mapped by name, or null if no such mapping exists.
      */
