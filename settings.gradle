@@ -1,5 +1,4 @@
 rootProject.name = "Json Parser"
 include ':app'
 include ':fragile'
-include ':annotations'
-include ':annotation-processor'
+include ':fragile-codegen'
