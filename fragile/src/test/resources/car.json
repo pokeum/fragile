@@ -1,10 +1,12 @@
-{
-  "name": "My Car\u0027s Name",
-  "speed": 15,
-  "gear": 1,
-  "drivetrain": 4,
-  "direction": "North",
-  "color": "Red",
-  "fuel": "Gas",
-  "price": 21795.0
-}
+[
+  {
+    "name": "Jane Doe",
+    "favorite-game": "Stardew Valley",
+    "subscriber": false
+  },
+  {
+    "name": "John Doe",
+    "favorite-game": "Dragon Quest XI",
+    "subscriber": true
+  }
+]

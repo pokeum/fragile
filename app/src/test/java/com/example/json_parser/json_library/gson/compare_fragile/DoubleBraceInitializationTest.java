@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.Set;
 
-import non_official.pokeum.fragile.Fragile;
+import kr.pokeum.fragile.Fragile;
 
 public class DoubleBraceInitializationTest {
 

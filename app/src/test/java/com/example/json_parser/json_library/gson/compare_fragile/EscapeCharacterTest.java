@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import non_official.pokeum.fragile.Fragile;
+import kr.pokeum.fragile.Fragile;
 
 public class EscapeCharacterTest {
 
