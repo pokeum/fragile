@@ -30,8 +30,8 @@ data class Publisher(
     val location: Location
 )
 internal fun JsonObject.toPublisher(): Publisher = Publisher(
-    name = get("name") as String,
-    year = (get("year") as Number).toInt(),
+    name = get("name").toString(),
+    year = get("year").toString().toInt(),
     location = getJsonObject("location")!!.toLocation()
 )
 
@@ -40,6 +40,6 @@ data class Location(
     val state: String
 )
 internal fun JsonObject.toLocation(): Location = Location(
-    city = get("city") as String,
-    state = get("state") as String
+    city = get("city").toString(),
+    state = get("state").toString()
 )
