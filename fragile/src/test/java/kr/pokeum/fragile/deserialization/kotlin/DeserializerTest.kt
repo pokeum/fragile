@@ -1,26 +1,23 @@
 package kr.pokeum.fragile.deserialization.kotlin
 
 import kr.pokeum.fragile.Fragile
+import kr.pokeum.fragile.deserialization.kotlin.model.*
 import kr.pokeum.fragile.util.TestUtils
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class DeserializerTest {
 
     @Test
-    fun testCar() {
-        val jsonString = TestUtils.getStringFromFile("car.json")
-        val jsonArray = Fragile().fromJson(jsonString).asJsonArray()
+    fun testBook() {
+        val jsonString = TestUtils.getStringFromFile("book.json")
+        val jsonObject = Fragile().fromJson(jsonString).asJsonObject()
 
-        if (jsonArray != null) {
-            println(jsonArray[0].asJsonObject()?.get("name"))
-        } else {
-            println("FAILURE")
-        }
-    }
-
-    @Test
-    fun testCake() {
-        val jsonString = TestUtils.getStringFromFile("cake.json")
-        val jsonObject = Fragile().fromJson(jsonString)
+        val expected = Book(
+            "The Catcher in the Rye",
+            Author("J.D. Salinger", 1919, null),
+            Publisher("Little, Brown and Company", 1951, Location("Boston", "MA"))
+        )
+        assertEquals(expected, jsonObject!!.toBook())
     }
 }

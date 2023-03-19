@@ -18,9 +18,9 @@ class Primitive(private val typeMirror: TypeMirror) {
 
     fun toTypeFunc(): String {
         return if (typeMirror.isNullablePrimitive()) {
-            if (nullableType() == "Char") { "get(0)" } else { "to${nullableType()}()" }
+            if (nullableType() == "Char") { "charAt(0)" } else { "to${nullableType()}()" }
         } else {
-            if (primitiveType() == "Char") { "get(0)" } else { "to${primitiveType()}()" }
+            if (primitiveType() == "Char") { "charAt(0)" } else { "to${primitiveType()}()" }
         }
     }
 

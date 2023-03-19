@@ -2,6 +2,9 @@ package kr.pokeum.fragile.serialization.java;
 
 import static org.junit.Assert.assertEquals;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -16,40 +19,67 @@ import kr.pokeum.fragile.FragileBuilder;
 
 public class SerializeNullsTest {
 
-    Fragile disableSerializeNulls = new FragileBuilder().serializeNulls(false).build();
-    Fragile enableSerializeNulls = new FragileBuilder().serializeNulls(true).build();
+    Fragile fragileDisableSerializeNulls = new FragileBuilder().serializeNulls(false).build();
+    Fragile fragileEnableSerializeNulls = new FragileBuilder().serializeNulls(true).build();
+
+    Gson gsonDisableSerializeNulls = new GsonBuilder().create();
+    Gson gsonEnableSerializeNulls = new GsonBuilder().serializeNulls().create();
 
     @Test
     //@Ignore("NO DIFFERENCE")
     public void withArray() {
         String[] subject = new String[] { "hello", null, "world" };
 
-        assertEquals("[\"hello\",null,\"world\"]", disableSerializeNulls.toJson(subject));
-        assertEquals("[\"hello\",null,\"world\"]", enableSerializeNulls.toJson(subject));
+        // [ "hello", null, "world" ]
+        assertEquals(
+                gsonDisableSerializeNulls.toJson(subject),
+                fragileDisableSerializeNulls.toJson(subject)
+        );
+        // [ "hello", null, "world" ]
+        assertEquals(
+                gsonEnableSerializeNulls.toJson(subject),
+                fragileEnableSerializeNulls.toJson(subject)
+        );
     }
 
     @Test
     //@Ignore("NO DIFFERENCE")
     public void withSet() {
-        Set<Integer> subject = new HashSet<Integer>();
+        Set<Integer> subject = new HashSet();
         subject.add(1);
         subject.add(null);
         subject.add(2);
 
-        assertEquals("[null,1,2]", disableSerializeNulls.toJson(subject));
-        assertEquals("[null,1,2]", enableSerializeNulls.toJson(subject));
+        // [ null, 1, 2 ]
+        assertEquals(
+                gsonDisableSerializeNulls.toJson(subject),
+                fragileDisableSerializeNulls.toJson(subject)
+        );
+        // [ null, 1, 2 ]
+        assertEquals(
+                gsonEnableSerializeNulls.toJson(subject),
+                fragileEnableSerializeNulls.toJson(subject)
+        );
     }
 
     @Test
     //@Ignore("NO DIFFERENCE")
     public void withList() {
-        List<Double> subject = new LinkedList<>();
+        List<Double> subject = new LinkedList();
         subject.add(1.23);
         subject.add(null);
         subject.add(4.56);
 
-        assertEquals("[1.23,null,4.56]", disableSerializeNulls.toJson(subject));
-        assertEquals("[1.23,null,4.56]", enableSerializeNulls.toJson(subject));
+        // [ 1.23, null, 4.56 ]
+        assertEquals(
+                gsonDisableSerializeNulls.toJson(subject),
+                fragileDisableSerializeNulls.toJson(subject)
+        );
+        // [ 1.23, null, 4.56 ]
+        assertEquals(
+                gsonEnableSerializeNulls.toJson(subject),
+                fragileEnableSerializeNulls.toJson(subject)
+        );
     }
 
     @Test
@@ -59,10 +89,15 @@ public class SerializeNullsTest {
         subject.put("key2", null);
         subject.put("key3", "value3");
 
-        assertEquals("{\"key1\":\"value1\",\"key3\":\"value3\"}",
-                disableSerializeNulls.toJson(subject));
-
-        assertEquals("{\"key1\":\"value1\",\"key2\":null,\"key3\":\"value3\"}",
-                enableSerializeNulls.toJson(subject));
+        // { "key1": "value1", "key3": "value3" }
+        assertEquals(
+                gsonDisableSerializeNulls.toJson(subject),
+                fragileDisableSerializeNulls.toJson(subject)
+        );
+        // { "key1": "value1", "key2": null, "key3": "value3" }
+        assertEquals(
+                gsonEnableSerializeNulls.toJson(subject),
+                fragileEnableSerializeNulls.toJson(subject)
+        );
     }
 }

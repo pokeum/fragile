@@ -1,0 +1,16 @@
+{
+  "title": "The Catcher in the Rye",
+  "author": {
+    "name": "J.D. Salinger",
+    "birthYear": 1919,
+    "deathYear": null
+  },
+  "publisher": {
+    "name": "Little, Brown and Company",
+    "year": 1951,
+    "location": {
+      "city": "Boston",
+      "state": "MA"
+    }
+  }
+}
