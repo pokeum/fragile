@@ -39,6 +39,9 @@ object CodeGen {
     }
 
     private fun createToClassObjectCodeBlock(binding: FieldBinding): CodeBlock {
+
+        println(binding.getDeclaredType()?.simpleName)  // DEBUG
+
         val builder = CodeBlock.builder()
         when {
             binding.isPrimitive() -> {
@@ -60,7 +63,7 @@ object CodeGen {
                 when {
                     binding.isExtendedBy(CharSequence::class.java) -> {
                         builder.addStatement(
-                            "\t%L = JavaConverter.convertString(get(%S)?.toString()),",
+                            "\t%L = JavaConverter.convert(get(%S)?.toString()),",
                             binding.getFieldName(),
                             binding.getKeyName()
                         )

@@ -1,9 +1,12 @@
 package kr.pokeum.fragile_codegen.model
 
+import kotlin.reflect.KClass
 import kr.pokeum.fragile.annotation.SerializedName
 import kr.pokeum.fragile_codegen.extension.isExtendedBy
 import kr.pokeum.fragile_codegen.extension.isNullablePrimitive
 import javax.lang.model.element.Element
+import javax.lang.model.element.TypeElement
+import javax.lang.model.type.DeclaredType
 import javax.lang.model.type.TypeKind
 import javax.lang.model.type.TypeMirror
 
@@ -17,6 +20,16 @@ class FieldBinding(val fieldElement: Element, val annotation: SerializedName) {
     fun isNullablePrimitive() = fieldElement.asType().isNullablePrimitive()
 
     fun getType(): TypeMirror = fieldElement.asType()
+
+    fun getDeclaredType(): KClass<*>? {
+        if (isDeclared()) {
+            val typeMirror = fieldElement.asType()
+            val declaredType = typeMirror as DeclaredType
+            val typeElement = declaredType.asElement() as TypeElement
+            return Class.forName(typeElement.qualifiedName.toString()).kotlin
+        }
+        return null
+    }
 
     fun <T> isExtendedBy(`class`: Class<T>) = fieldElement.isExtendedBy(`class`)
 
